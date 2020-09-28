@@ -40,21 +40,21 @@ class ComplexForm extends Component {
 		}
 
 		if (this.state.submitted === false) {
-			for (let form of objectStuff) {
-				let jsx = form.map((stuff, index) => {
+			for (let [index, form] of objectStuff.entries()) {
+				let jsx = form.map((stuff) => {
 					return (
 						<label key={stuff[0]}>
 							{stuff[0]}
 							<input
 								onChange={this.handleChange}
+								type={stuff[0].includes("Date") ? "date" : "text"}
 								name={stuff[0]}
 								data-index={index}
-								value={stuff[1]}
 							></input>
 						</label>
 					);
 				});
-				jsxArray.push(jsx);
+				jsxArray.push(<div className="form">{jsx}</div>);
 			}
 		} else {
 			for (let form of objectStuff) {
@@ -71,12 +71,17 @@ class ComplexForm extends Component {
 		}
 
 		return (
-			<form className="pretty">
-				<div className="solo-form">{jsxArray}</div>
-				<button value="education" onClick={this.generateNewEntry}>
+			<form className="form-container">
+				<h2>{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}</h2>
+				<div className="">{jsxArray}</div>
+				<button value={this.props.fieldName} onClick={this.generateNewEntry}>
 					+
 				</button>
-				{this.state.submitted? <button onClick={this.toggleSubbmitted}>Edit</button> : <input type="submit" onClick={this.handleSubmit}></input> }
+				{this.state.submitted ? (
+					<button onClick={this.toggleSubbmitted}>Edit</button>
+				) : (
+					<input type="submit" onClick={this.handleSubmit}></input>
+				)}
 			</form>
 		);
 	}

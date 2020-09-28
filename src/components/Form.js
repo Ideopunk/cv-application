@@ -12,12 +12,22 @@ class Form extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.toggleSubbmitted();
-		alert("yo");
 	};
 
 	toggleSubbmitted = () => {
 		this.setState({ submitted: !this.state.submitted });
 	};
+
+	typeSwitch(type) {
+		switch (type) {
+			case "phone":
+				return "tel";
+			case "email":
+				return "email";
+			default:
+				return "text";
+		}
+	}
 
 	render() {
 		let arrayOfArrays = Object.entries(this.props.fields);
@@ -26,12 +36,18 @@ class Form extends Component {
 			let jsx = arrayOfArrays.map((array) => (
 				<label key={array[0]}>
 					{array[0]}
-					<input name={array[0]} onChange={this.handleChange} value={array[1]}></input>
+					<input
+						type={this.typeSwitch(array[0])}
+						name={array[0]}
+						onChange={this.handleChange}
+						value={array[1]}
+						required
+					></input>
 				</label>
 			));
 
 			return (
-				<form className="forms-div pretty" onSubmit={this.handleSubmit}>
+				<form className="form" onSubmit={this.handleSubmit}>
 					{jsx}
 					<input type="submit"></input>
 				</form>
@@ -47,7 +63,7 @@ class Form extends Component {
 			));
 
 			return (
-				<div className="pretty">
+				<div className="form">
 					{jsx}
 					<button onClick={this.toggleSubbmitted}>Edit</button>
 				</div>

@@ -7,15 +7,15 @@ class App extends Component {
 	initialSchool = {
 		name: "School name",
 		title: "Title of study",
-		start: "Start Date",
-		end: "End date",
+		startDate: "Start date",
+		endDate: "End date",
 	};
 	initialWork = {
 		name: "Company name",
 		title: "Position title",
 		tasks: "Main tasks",
-		start: "Start date",
-		end: "End date",
+		startDate: "Start date",
+		endDate: "End date",
 	};
 
 	initialState = {
@@ -33,8 +33,9 @@ class App extends Component {
 	};
 
 	complexInputUpdate = (field, index, name, value) => {
+		console.log(field, index, name, value)
 		let currentState = this.state;
-		currentState[field][index].name = value;
+		currentState[field][index][name] = value;
 		console.log(currentState)
 		this.setState(currentState);
 	};
@@ -54,7 +55,6 @@ class App extends Component {
 		const personal = { name, phone, email };
 		return (
 			<div className="App">
-				<p>yo</p>
 				<Form inputUpdate={this.inputUpdate} fields={personal} />
 				<ComplexForm
 					complexInputUpdate={this.complexInputUpdate}
@@ -68,6 +68,7 @@ class App extends Component {
 					fields={work}
 					addEntry={this.addEntry}
 				/>
+
 			</div>
 		);
 	}
