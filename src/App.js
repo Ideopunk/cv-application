@@ -1,15 +1,32 @@
-import React, { Component } from 'react';
-import './App.scss';
+import React, { Component } from "react";
+import "./style/index.scss";
+import Form from "./components/Form.js";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <p>yo</p>
-      </div>
-    );
+	initialState = {
+		name: "",
+		phone: "",
+		email: "",
+		education: [],
+		work: [],
+	};
+
+  state = this.initialState
+
+  inputUpdate = obj => {
+    this.setState(obj)
   }
-  
+
+	render() {
+    const {name, phone, email, education, work} = this.state
+    const personal = {name, phone, email}
+		return (
+			<div className="App">
+				<p>yo</p>
+				<Form inputUpdate={this.inputUpdate} fields={personal}  />
+			</div>
+		);
+	}
 }
 
 export default App;
