@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
 class Form extends Component {
-    
+    state = {
+        submitted: false,
+    }
 
     handleChange = e => {
         this.props.inputUpdate({[e.target.name] : e.target.value})
@@ -9,11 +11,17 @@ class Form extends Component {
 
 	handleSubmit = e => {
         e.preventDefault();
+        this.toggleSubbmitted()
+        // this.setState({submitted: true})
         alert('yo')
 	}
 
+    toggleSubbmitted = () => {
+        this.setState({submitted: !this.state.submitted})
+    }
+
 	render() {
-		const mapper = (object) => {
+		const inputMapper = (object) => {
 			let array = [];
 			for (let key in object) {
 				array.push(
@@ -30,8 +38,28 @@ class Form extends Component {
 				</form>
 			);
 		};
-		const inputs = mapper(this.props.fields);
-		return inputs;
+        
+        const displayMapper = (object) => {
+            let array = [];
+            for (let key in object) {
+                array.push(
+                    <div key={key}>
+                        <h3>{key}</h3>
+                        <p></p>
+                    </div>
+                )
+            }
+            return <div className="pretty">
+                {array}
+                <button onClick={this.toggleSubbmitted}>Edit</button>
+            </div>
+        }
+
+        if (this.state.submitted === false) {
+            return (inputMapper(this.props.fields))
+        } else {
+            return displayMapper(this.props.fields)
+        }
 	}
 }
 
