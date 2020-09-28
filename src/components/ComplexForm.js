@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
 class ComplexForm extends Component {
-	state = {
-		forms: 1,
-		submitted: false,
-	};
 
 	toggleSubbmitted = () => {
 		this.setState({ submitted: !this.state.submitted });
@@ -13,49 +9,43 @@ class ComplexForm extends Component {
 	generateNewEntry = (e) => {
 		e.preventDefault();
 		console.log(this.state);
+		this.props.addEntry(e.target.value)
 		this.setState((prevState) => ({
 			forms: prevState.forms + 1,
 		}));
 	};
 
-	removeEntry = (e) => {
-		e.preventDefault();
-		if (this.state.forms > 1) {
-			this.setState((prevState) => ({
-				forms: prevState.forms - 1,
-			}));
-		}
-	};
-
 	handleSubmit = (e) => {
-        console.log(e.target);
+		console.log(e.target);
 		e.preventDefault();
 		this.toggleSubbmitted();
 	};
 
 	handleChange = (e) => {
-        console.log(e.target)
-        this.props.inputUpdate(this.props.fieldName, e.target.name, e.target.value )
-    };
+		console.log(e.target);
+		this.props.complexInputUpdate(this.props.fieldName, e.target.getAttribute('data-index'), e.target.name, e.target.value);
+	};
 
 	render() {
 
-		let inputarray = [];
-		for (let i = 0; i < this.state.forms; i++) {
-            let input = this.props.fields.map((field) => (
-                <label key={field}>
-                    {field}
-                    <input onChange={this.handleChange} name={i} value={field}></input>
-                </label>
-            ));
-			inputarray.push(input);
+		let bigArray = []
+		for (let field of this.props.fields) {
+			let objectStuff = Object.entries(field);
+			let jsx = objectStuff.map((stuff, index) => {
+				return (
+					<label key={stuff[0]}>
+						{stuff[0]}
+						<input onChange={this.handleChange} name={stuff[0]} data-index={index} value={stuff[1]}></input>
+					</label>
+				);
+			});
+			bigArray.push(jsx)
 		}
 
 		return (
 			<form className="pretty">
-				<div className="solo-form">{inputarray}</div>
-				<button onClick={this.generateNewEntry}>+</button>
-				<button onClick={this.removeEntry}>-</button>
+				<div className="solo-form">{bigArray}</div>
+				<button value="education" onClick={this.generateNewEntry}>+</button>
 				<input type="submit" onClick={this.handleSubmit}></input>
 			</form>
 		);
