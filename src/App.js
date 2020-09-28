@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./style/index.scss";
-import Form from "./components/Form.js";
+import {Form, ComplexForm} from "./components/Form.js";
 
 class App extends Component {
 	initialState = {
-		name: "Please type your full name",
-		phone: "",
-		email: "",
+		name: "Full name",
+		phone: "Phone",
+		email: "Email",
 		education: [],
 		work: [],
 	};
@@ -24,6 +24,8 @@ class App extends Component {
 			<div className="App">
 				<p>yo</p>
 				<Form inputUpdate={this.inputUpdate} fields={personal}  />
+        <ComplexForm inputUpdate={this.inputUpdate} fields={education} />
+        <ComplexForm inputUpdate={this.inputUpdate} fields={work} />
 			</div>
 		);
 	}

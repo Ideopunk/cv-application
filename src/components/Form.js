@@ -12,7 +12,6 @@ class Form extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.toggleSubbmitted();
-		// this.setState({submitted: true})
 		alert("yo");
 	};
 
@@ -29,8 +28,7 @@ class Form extends Component {
 			let jsx = arrayOfArrays.map((array) => (
 				<label key={array[0]}>
 					{array[0]}
-					<input name={array[0]} onChange={this.handleChange} value={array[1]}>
-					</input>
+					<input name={array[0]} onChange={this.handleChange} value={array[1]}></input>
 				</label>
 			));
 
@@ -66,4 +64,10 @@ class Form extends Component {
 	}
 }
 
-export default Form;
+class ComplexForm extends Component {
+	render() {
+        return <Form inputUpdate={this.props.inputUpdate} fields={this.props.fields}  />
+	}
+}
+
+export { Form, ComplexForm };
