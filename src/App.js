@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./style/index.scss";
-import {Form, ComplexForm} from "./components/Form.js";
+import Form from "./components/Form.js";
+import ComplexForm from "./components/ComplexForm.js";
 
 class App extends Component {
 	initialState = {
@@ -11,21 +12,43 @@ class App extends Component {
 		work: [],
 	};
 
-  state = this.initialState
+	state = this.initialState;
 
-  inputUpdate = obj => {
-    this.setState(obj)
-  }
+	inputUpdate = (obj) => {
+		this.setState(obj);
+	};
+
+	complexInputUpdate = (name, index, value) => {
+		let currentState = this.state;
+		currentState[name][index] = value;
+		this.setState(currentState);
+	};
 
 	render() {
-    const {name, phone, email, education, work} = this.state
-    const personal = {name, phone, email}
+		const { name, phone, email, education, work } = this.state;
+		const personal = { name, phone, email };
 		return (
 			<div className="App">
 				<p>yo</p>
-				<Form inputUpdate={this.inputUpdate} fields={personal}  />
-        <ComplexForm inputUpdate={this.inputUpdate} fields={education} />
-        <ComplexForm inputUpdate={this.inputUpdate} fields={work} />
+				<Form inputUpdate={this.inputUpdate} fields={personal} />
+				<ComplexForm
+					inputUpdate={this.complexInputUpdate}
+					fieldName="education"
+					stateField={education}
+					fields={["School name", "Title of study", "Start date", "End date"]}
+				/>
+				<ComplexForm
+					inputUpdate={this.complexInputUpdate}
+					fieldName="work"
+					stateField={work}
+					fields={[
+						"Company name",
+						"Position title",
+						"Main tasks",
+						"Start date",
+						"End date",
+					]}
+				/>
 			</div>
 		);
 	}

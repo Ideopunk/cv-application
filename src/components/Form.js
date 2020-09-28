@@ -20,9 +20,7 @@ class Form extends Component {
 	};
 
 	render() {
-		console.log(this.props.fields);
 		let arrayOfArrays = Object.entries(this.props.fields);
-		console.log(arrayOfArrays);
 
 		const inputMapper = (arrayOfArrays) => {
 			let jsx = arrayOfArrays.map((array) => (
@@ -33,7 +31,7 @@ class Form extends Component {
 			));
 
 			return (
-				<form className="forms-div" onSubmit={this.handleSubmit}>
+				<form className="forms-div pretty" onSubmit={this.handleSubmit}>
 					{jsx}
 					<input type="submit"></input>
 				</form>
@@ -64,10 +62,4 @@ class Form extends Component {
 	}
 }
 
-class ComplexForm extends Component {
-	render() {
-        return <Form inputUpdate={this.props.inputUpdate} fields={this.props.fields}  />
-	}
-}
-
-export { Form, ComplexForm };
+export default Form;
