@@ -26,14 +26,13 @@ class App extends Component {
 		work: [this.initialWork],
 	};
 
-	state = this.initialState;
+	state = JSON.parse(JSON.stringify(this.initialState));
 
 	inputUpdate = (obj) => {
 		this.setState(obj);
 	};
 
 	complexInputUpdate = (field, index, name, value) => {
-		console.log(name, index, value)
 		let currentState = this.state;
 		currentState[field][index].name = value;
 		console.log(currentState)
@@ -47,6 +46,7 @@ class App extends Component {
 		} else {
 			currentState[field].push(this.initialWork)
 		}
+		this.setState(currentState)
 	}
 
 	render() {
