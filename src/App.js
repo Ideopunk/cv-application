@@ -4,7 +4,7 @@ import Form from "./components/Form.js";
 
 class App extends Component {
 	initialState = {
-		name: "",
+		name: "Please type your full name",
 		phone: "",
 		email: "",
 		education: [],

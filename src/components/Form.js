@@ -1,65 +1,68 @@
 import React, { Component } from "react";
 
 class Form extends Component {
-    state = {
-        submitted: false,
-    }
+	state = {
+		submitted: false,
+	};
 
-    handleChange = e => {
-        this.props.inputUpdate({[e.target.name] : e.target.value})
-    }
+	handleChange = (e) => {
+		this.props.inputUpdate({ [e.target.name]: e.target.value });
+	};
 
-	handleSubmit = e => {
-        e.preventDefault();
-        this.toggleSubbmitted()
-        // this.setState({submitted: true})
-        alert('yo')
-	}
+	handleSubmit = (e) => {
+		e.preventDefault();
+		this.toggleSubbmitted();
+		// this.setState({submitted: true})
+		alert("yo");
+	};
 
-    toggleSubbmitted = () => {
-        this.setState({submitted: !this.state.submitted})
-    }
+	toggleSubbmitted = () => {
+		this.setState({ submitted: !this.state.submitted });
+	};
 
 	render() {
-		const inputMapper = (object) => {
-			let array = [];
-			for (let key in object) {
-				array.push(
-					<label key={key}>
-						{key}
-						<input name={key} onChange={this.handleChange}></input>
-					</label>
-				);
-			}
+		console.log(this.props.fields);
+		let arrayOfArrays = Object.entries(this.props.fields);
+		console.log(arrayOfArrays);
+
+		const inputMapper = (arrayOfArrays) => {
+			let jsx = arrayOfArrays.map((array) => (
+				<label key={array[0]}>
+					{array[0]}
+					<input name={array[0]} onChange={this.handleChange} value={array[1]}>
+					</input>
+				</label>
+			));
+
 			return (
 				<form className="forms-div" onSubmit={this.handleSubmit}>
-					{array}
-                    <input type="submit"></input>
+					{jsx}
+					<input type="submit"></input>
 				</form>
 			);
 		};
-        
-        const displayMapper = (object) => {
-            let array = [];
-            for (let key in object) {
-                array.push(
-                    <div key={key}>
-                        <h3>{key}</h3>
-                        <p></p>
-                    </div>
-                )
-            }
-            return <div className="pretty">
-                {array}
-                <button onClick={this.toggleSubbmitted}>Edit</button>
-            </div>
-        }
 
-        if (this.state.submitted === false) {
-            return (inputMapper(this.props.fields))
-        } else {
-            return displayMapper(this.props.fields)
-        }
+		const displayMapper = (arrayOfArrays) => {
+			let jsx = arrayOfArrays.map((array) => (
+				<div key={array[0]}>
+					<h1>{array[0]}</h1>
+					<p>{array[1]}</p>
+				</div>
+			));
+
+			return (
+				<div className="pretty">
+					{jsx}
+					<button onClick={this.toggleSubbmitted}>Edit</button>
+				</div>
+			);
+		};
+
+		if (this.state.submitted === false) {
+			return inputMapper(arrayOfArrays);
+		} else {
+			return displayMapper(arrayOfArrays);
+		}
 	}
 }
 
