@@ -34,6 +34,29 @@ class ComplexForm extends Component {
 		);
 	};
 
+	inputOrArea = (name, value, index) => {
+		if (name.includes('Tasks')) {
+			return (
+				<textarea
+					onChange={this.handleChange}
+					name={name}
+					data-index={index}
+					value={value}
+				></textarea>
+			)
+		} else {
+			return (
+				<input
+					onChange={this.handleChange}
+					type={name.includes("date") ? "date" : "text"}
+					name={name}
+					data-index={index}
+					value={value}
+				></input>
+			)
+		}
+	}
+
 	render() {
 		let jsxArray = [];
 
@@ -49,13 +72,14 @@ class ComplexForm extends Component {
 					return (
 						<label key={stuff[0]} className="data">
 							{stuff[0]}
-							<input
+							{this.inputOrArea(stuff[0], stuff[1], index)}
+							{/* <input
 								onChange={this.handleChange}
 								type={stuff[0].includes("date") ? "date" : "text"}
 								name={stuff[0]}
 								data-index={index}
 								value={stuff[1]}
-							></input>
+							></input> */}
 						</label>
 					);
 				});

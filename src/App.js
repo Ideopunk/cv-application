@@ -13,7 +13,7 @@ class App extends Component {
 	initialWork = {
 		"Company name": "Company name",
 		"Position title": "Position title",
-		"Tasks": "List your main tasks in this position",
+		"Tasks": "List your main tasks in this position.",
 		"Start date": "2000-01-01",
 		"End date": "2000-01-01",
 	};
@@ -60,7 +60,7 @@ class App extends Component {
 		const personal = { name, phone, email };
 		return (
 			<div className="App">
-				<header><h1>CV</h1></header>
+				<header><h1>CV Submission</h1></header>
 				<Form inputUpdate={this.inputUpdate} fieldName="personal" fields={personal} />
 				<ComplexForm
 					complexInputUpdate={this.complexInputUpdate}
