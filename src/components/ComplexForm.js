@@ -17,18 +17,15 @@ class ComplexForm extends Component {
 
 	removeEntry = (e) => {	
 		e.preventDefault();
-		console.log(e.target.value)
 		this.props.removeEntry(e.target.name, e.target.value);
 	};
 
 	handleSubmit = (e) => {
-		console.log(e.target);
 		e.preventDefault();
 		this.toggleSubbmitted();
 	};
 
 	handleChange = (e) => {
-		console.log(e.target);
 		this.props.complexInputUpdate(
 			this.props.fieldName,
 			e.target.getAttribute("data-index"),
@@ -45,7 +42,6 @@ class ComplexForm extends Component {
 			objectStuff.push(Object.entries(field));
 		}
 
-		console.log(objectStuff)
 
 		if (this.state.submitted === false) {
 			for (let [index, form] of objectStuff.entries()) {

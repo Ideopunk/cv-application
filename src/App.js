@@ -7,7 +7,7 @@ class App extends Component {
 	initialSchool = {
 		name: "School name",
 		title: "Title of study",
-		startDate: "2000-01-1",
+		startDate: "2000-01-01",
 		endDate: "2000-01-01",
 	};
 	initialWork = {
@@ -41,9 +41,9 @@ class App extends Component {
 	addEntry = field => {
 		let currentState = this.state;
 		if (field === "education") {
-			currentState[field].push(this.initialSchool)
+			currentState[field].push(JSON.parse(JSON.stringify(this.initialSchool)))
 		} else {
-			currentState[field].push(this.initialWork)
+			currentState[field].push(JSON.parse(JSON.stringify(this.initialWork)))
 		}
 		this.setState(currentState)
 		console.log(this.initialSchool, this.initialWork)
