@@ -7,15 +7,15 @@ class App extends Component {
 	initialSchool = {
 		name: "School name",
 		title: "Title of study",
-		startDate: "Start date",
-		endDate: "End date",
+		startDate: "2000-01-1",
+		endDate: "2000-01-01",
 	};
 	initialWork = {
 		name: "Company name",
 		title: "Position title",
 		tasks: "Main tasks",
-		startDate: "Start date",
-		endDate: "End date",
+		startDate: "2000-01-01",
+		endDate: "2000-01-01",
 	};
 
 	initialState = {
@@ -33,10 +33,8 @@ class App extends Component {
 	};
 
 	complexInputUpdate = (field, index, name, value) => {
-		console.log(field, index, name, value)
 		let currentState = this.state;
 		currentState[field][index][name] = value;
-		console.log(currentState)
 		this.setState(currentState);
 	};
 
@@ -47,6 +45,13 @@ class App extends Component {
 		} else {
 			currentState[field].push(this.initialWork)
 		}
+		this.setState(currentState)
+		console.log(this.initialSchool, this.initialWork)
+	}
+
+	removeEntry = (field, index) => {
+		let currentState = this.state
+		currentState[field].splice(index, 1)
 		this.setState(currentState)
 	}
 
@@ -59,14 +64,16 @@ class App extends Component {
 				<ComplexForm
 					complexInputUpdate={this.complexInputUpdate}
 					fieldName="education"
-					addEntry={this.addEntry}
 					fields={education}
+					addEntry={this.addEntry}
+					removeEntry={this.removeEntry}
 				/>
 				<ComplexForm
 					complexInputUpdate={this.complexInputUpdate}
 					fieldName="work"
 					fields={work}
 					addEntry={this.addEntry}
+					removeEntry={this.removeEntry}
 				/>
 
 			</div>
