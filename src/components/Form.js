@@ -20,13 +20,13 @@ class Form extends Component {
 	};
 
 	nameSwitch(name) {
-		switch(name) {
+		switch (name) {
 			case "email":
 				return "Email address";
-			case "phone": 
+			case "phone":
 				return "Phone number";
-			default: 
-				return "Name"
+			default:
+				return "Name";
 		}
 	}
 
@@ -43,7 +43,7 @@ class Form extends Component {
 
 	render() {
 		let arrayOfArrays = Object.entries(this.props.fields);
-		console.log(arrayOfArrays)
+		console.log(arrayOfArrays);
 		const inputMapper = (arrayOfArrays) => {
 			let jsx = arrayOfArrays.map((array) => (
 				<label key={array[0]} className="data">
@@ -60,9 +60,13 @@ class Form extends Component {
 
 			return (
 				<form className="container" onSubmit={this.handleSubmit}>
-					<h2>{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}</h2>
+					<h2>
+						{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}
+					</h2>
 					<div className="form">{jsx}</div>
-					<div className="button-container"><input type="submit"></input></div>
+					<div className="button-container">
+						<input type="submit"></input>
+					</div>
 				</form>
 			);
 		};
@@ -77,9 +81,13 @@ class Form extends Component {
 
 			return (
 				<div className="container">
-					<h2>{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}</h2>
+					<h2>
+						{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}
+					</h2>
 					<div className="display">{jsx}</div>
-					<div className="button-container"><button onClick={this.toggleSubbmitted}>Edit</button></div>
+					<div className="button-container">
+						<button onClick={this.toggleSubbmitted}>Edit</button>
+					</div>
 					<Toast />
 				</div>
 			);

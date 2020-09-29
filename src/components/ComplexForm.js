@@ -86,7 +86,7 @@ class ComplexForm extends Component {
 			}
 		} else {
 			for (let form of objectStuff) {
-				let jsx = form.map((stuff, index) => {
+				let jsx = form.map((stuff) => {
 					return (
 						<div key={stuff[0]} className={stuff[0]==="Tasks"? "tasks" : ""}>
 							<h3>{stuff[0]}</h3>
@@ -94,7 +94,6 @@ class ComplexForm extends Component {
 						</div>
 					);
 				});
-				// jsxArray.push(jsx);
 				jsxArray.push(
 					<div className="display">{jsx}</div>
 				);
