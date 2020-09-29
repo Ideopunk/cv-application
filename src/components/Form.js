@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Toast from "./Toast.js";
 
 class Form extends Component {
 	state = {
@@ -79,6 +80,7 @@ class Form extends Component {
 					<h2>{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}</h2>
 					{jsx}
 					<button onClick={this.toggleSubbmitted}>Edit</button>
+					<Toast />
 				</div>
 			);
 		};

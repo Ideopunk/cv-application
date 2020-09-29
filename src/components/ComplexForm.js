@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Toast from "./Toast.js";
 
 class ComplexForm extends Component {
 	state = {
@@ -116,6 +117,7 @@ class ComplexForm extends Component {
 				) : (
 					<input type="submit" onClick={this.handleSubmit}></input>
 				)}
+				{this.state.submitted && <Toast />}
 			</form>
 		);
 	}
