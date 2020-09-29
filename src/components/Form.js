@@ -62,7 +62,7 @@ class Form extends Component {
 				<form className="container" onSubmit={this.handleSubmit}>
 					<h2>{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}</h2>
 					<div className="form">{jsx}</div>
-					<input type="submit"></input>
+					<div className="button-container"><input type="submit"></input></div>
 				</form>
 			);
 		};
@@ -70,7 +70,7 @@ class Form extends Component {
 		const displayMapper = (arrayOfArrays) => {
 			let jsx = arrayOfArrays.map((array) => (
 				<div key={array[0]}>
-					<h1>{array[0]}</h1>
+					<h3>{array[0]}</h3>
 					<p>{array[1]}</p>
 				</div>
 			));
@@ -79,7 +79,7 @@ class Form extends Component {
 				<div className="container">
 					<h2>{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}</h2>
 					{jsx}
-					<button onClick={this.toggleSubbmitted}>Edit</button>
+					<div className="button-container"><button onClick={this.toggleSubbmitted}>Edit</button></div>
 					<Toast />
 				</div>
 			);

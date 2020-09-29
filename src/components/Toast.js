@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 
 class Toast extends Component {
-	handleClick = (e) => {
-		e.preventdefault();
-		document.getElementById("toast").classList.add("hide");
-	};
-
 	componentDidMount = () => {
         let toast = document.getElementById("toast")
         setTimeout(() => toast.classList.add("transition"), 0);
@@ -15,10 +10,7 @@ class Toast extends Component {
 	render() {
 		return (
 			<div id="toast" className="toast">
-				Thank you for your submission!
-				<button className="toast-button" onClick={this.handleClick}>
-					x
-				</button>
+				Thank you for your submission! We've updated your profile!
 			</div>
 		);
 	}
