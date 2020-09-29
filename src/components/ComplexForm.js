@@ -47,11 +47,11 @@ class ComplexForm extends Component {
 			for (let [index, form] of objectStuff.entries()) {
 				let jsx = form.map((stuff) => {
 					return (
-						<label key={stuff[0]}>
+						<label key={stuff[0]} className="data">
 							{stuff[0]}
 							<input
 								onChange={this.handleChange}
-								type={stuff[0].includes("Date") ? "date" : "text"}
+								type={stuff[0].includes("date") ? "date" : "text"}
 								name={stuff[0]}
 								data-index={index}
 								value={stuff[1]}
@@ -81,7 +81,7 @@ class ComplexForm extends Component {
 		}
 
 		return (
-			<form className="form-container">
+			<form className="container">
 				<h2>{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}</h2>
 				{jsxArray}
 				<button value={this.props.fieldName} onClick={this.generateNewEntry}>

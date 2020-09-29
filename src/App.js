@@ -5,17 +5,17 @@ import ComplexForm from "./components/ComplexForm.js";
 
 class App extends Component {
 	initialSchool = {
-		name: "School name",
-		title: "Title of study",
-		startDate: "2000-01-01",
-		endDate: "2000-01-01",
+		"School name": "School name",
+		"Title of study": "Title of study",
+		"Start date": "2000-01-01",
+		"End date": "2000-01-01",
 	};
 	initialWork = {
-		name: "Company name",
-		title: "Position title",
-		tasks: "Main tasks",
-		startDate: "2000-01-01",
-		endDate: "2000-01-01",
+		"Company name": "Company name",
+		"Position title": "Position title",
+		"Tasks": "List your main tasks in this position",
+		"Start date": "2000-01-01",
+		"End date": "2000-01-01",
 	};
 
 	initialState = {
@@ -60,7 +60,8 @@ class App extends Component {
 		const personal = { name, phone, email };
 		return (
 			<div className="App">
-				<Form inputUpdate={this.inputUpdate} fields={personal} />
+				<header><h1>CV</h1></header>
+				<Form inputUpdate={this.inputUpdate} fieldName="personal" fields={personal} />
 				<ComplexForm
 					complexInputUpdate={this.complexInputUpdate}
 					fieldName="education"

@@ -18,6 +18,17 @@ class Form extends Component {
 		this.setState({ submitted: !this.state.submitted });
 	};
 
+	nameSwitch(name) {
+		switch(name) {
+			case "email":
+				return "Email address";
+			case "phone": 
+				return "Phone number";
+			default: 
+				return "Name"
+		}
+	}
+
 	typeSwitch(type) {
 		switch (type) {
 			case "phone":
@@ -31,11 +42,11 @@ class Form extends Component {
 
 	render() {
 		let arrayOfArrays = Object.entries(this.props.fields);
-
+		console.log(arrayOfArrays)
 		const inputMapper = (arrayOfArrays) => {
 			let jsx = arrayOfArrays.map((array) => (
-				<label key={array[0]}>
-					{array[0]}
+				<label key={array[0]} className="data">
+					{this.nameSwitch(array[0])}
 					<input
 						type={this.typeSwitch(array[0])}
 						name={array[0]}
@@ -47,8 +58,9 @@ class Form extends Component {
 			));
 
 			return (
-				<form className="form" onSubmit={this.handleSubmit}>
-					{jsx}
+				<form className="container" onSubmit={this.handleSubmit}>
+					<h2>{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}</h2>
+					<div className="form">{jsx}</div>
 					<input type="submit"></input>
 				</form>
 			);
@@ -63,7 +75,8 @@ class Form extends Component {
 			));
 
 			return (
-				<div className="form">
+				<div className="container">
+					<h2>{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}</h2>
 					{jsx}
 					<button onClick={this.toggleSubbmitted}>Edit</button>
 				</div>
