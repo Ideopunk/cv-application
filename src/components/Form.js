@@ -70,7 +70,7 @@ class Form extends Component {
 		const displayMapper = (arrayOfArrays) => {
 			let jsx = arrayOfArrays.map((array) => (
 				<div key={array[0]}>
-					<h3>{array[0]}</h3>
+					<h3>{array[0][0].toUpperCase() + array[0].substring(1)}</h3>
 					<p>{array[1]}</p>
 				</div>
 			));
@@ -78,7 +78,7 @@ class Form extends Component {
 			return (
 				<div className="container">
 					<h2>{this.props.fieldName[0].toUpperCase() + this.props.fieldName.substring(1)}</h2>
-					{jsx}
+					<div className="display">{jsx}</div>
 					<div className="button-container"><button onClick={this.toggleSubbmitted}>Edit</button></div>
 					<Toast />
 				</div>
