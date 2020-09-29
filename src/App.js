@@ -76,7 +76,7 @@ class App extends Component {
 					addEntry={this.addEntry}
 					removeEntry={this.removeEntry}
 				/>
-
+				<div className="fake"></div>
 			</div>
 		);
 	}
