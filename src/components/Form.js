@@ -6,7 +6,7 @@ function Form(props) {
 	const [submitted, setSubmitted] = useState(false)
 
 	const handleChange = (e) => {
-		props.inputUpdate({ [e.target.name]: e.target.value });
+		props.inputUpdate(e.target.name, e.target.value);
 	};
 
 	const handleSubmit = (e) => {
@@ -41,7 +41,6 @@ function Form(props) {
 	}
 
 	let arrayOfArrays = Object.entries(props.fields);
-	console.log(arrayOfArrays);
 
 	const inputMapper = (arrayOfArrays) => {
 		let jsx = arrayOfArrays.map((array) => (

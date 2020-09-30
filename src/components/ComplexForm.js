@@ -16,7 +16,7 @@ function ComplexForm(props) {
 
 	const removeEntry = (e) => {
 		e.preventDefault();
-		props.removeEntry(e.target.name, e.target.value);
+		props.removeEntry(e.target.name, Number(e.target.value));
 	};
 
 	const handleSubmit = (e) => {
@@ -27,7 +27,7 @@ function ComplexForm(props) {
 	const handleChange = (e) => {
 		props.complexInputUpdate(
 			props.fieldName,
-			e.target.getAttribute("data-index"),
+			Number(e.target.getAttribute("data-index")),
 			e.target.name,
 			e.target.value
 		);
@@ -83,7 +83,7 @@ function ComplexForm(props) {
 			);
 		}
 	} else {
-		for (let form of objectStuff) {
+		for (let [index, form] of objectStuff.entries()) {
 			let jsx = form.map((stuff) => {
 				return (
 					<div key={stuff[0]} className={stuff[0] === "Tasks" ? "tasks" : ""}>
@@ -92,7 +92,8 @@ function ComplexForm(props) {
 					</div>
 				);
 			});
-			jsxArray.push(<div className="display">{jsx}</div>);
+			console.log(form)
+			jsxArray.push(<div className="display" key={index}>{jsx}</div>);
 		}
 	}
 
